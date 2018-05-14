@@ -1,0 +1,15 @@
+{
+  "name": "gitlab-play",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Gershon",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "parse-link-header": "^1.0.1"
+  }
+}
