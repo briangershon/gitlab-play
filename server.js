@@ -3,7 +3,7 @@
 const fs = require('fs');
 const program = require('commander');
 const figlet = require('figlet');
-const { getAllProjects } = require('./src/api-projects');
+const { getAllProjects, getProjectTags } = require('./src/api-projects');
 
 const { GITLAB_TOKEN, GITLAB_INSTANCE } = process.env;
 
@@ -15,7 +15,6 @@ program
 
 program
   .command('save-all-projects')
-  .alias('s')
   .description('Save list of all projects to a file')
   .action(() => {
     getAllProjects(GITLAB_TOKEN, GITLAB_INSTANCE).then((projects) => {
@@ -24,6 +23,15 @@ program
       });
     }).catch((err) => {
       console.log('err', err);
+    });
+  });
+
+program
+  .command('tags <projectId>')
+  .description('Display tags for a specific project')
+  .action((projectId) => {
+    getProjectTags(GITLAB_TOKEN, GITLAB_INSTANCE, projectId).then((tags) => {
+      console.log('tags', tags);
     });
   });
 

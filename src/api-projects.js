@@ -31,3 +31,21 @@ module.exports.getAllProjects = async function getAllProjects(GITLAB_TOKEN, GITL
   console.log(`Done fetching. Found ${projects.length} projects.`);
   return projects;
 };
+
+module.exports.getProjectTags = async function getProjectTags(
+  GITLAB_TOKEN,
+  GITLAB_INSTANCE,
+  projectId,
+) {
+  const options = {
+    headers: {
+      'Private-Token': GITLAB_TOKEN,
+    },
+  };
+
+  const url = `${GITLAB_INSTANCE}/api/v4/projects/${projectId}/repository/tags`;
+  console.log('url', url);
+  const response = await axios.get(url, options);
+  const result = response.data;
+  return result;
+};

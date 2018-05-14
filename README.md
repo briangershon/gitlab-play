@@ -14,3 +14,6 @@ Requires NodeJS 7.6+ (for async/await support).
 
     # lookup a project that has the word "dashboard"
     npm run list-projects | grep dashboard
+
+    # lookup tags for a project (projectId)
+    npm run tags 342
