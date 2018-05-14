@@ -14,6 +14,7 @@
     "axios": "^0.18.0",
     "commander": "^2.15.1",
     "eslint": "^4.19.1",
+    "figlet": "^1.2.0",
     "json": "^9.0.6",
     "parse-link-header": "^1.0.1"
   },
