@@ -5,13 +5,20 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "list-projects": "cat all-projects.json | json -a id name"
+    "save-all-projects": "npm start -- save-all-projects",
+    "list-projects": "cat all-projects.json | json -a id name_with_namespace"
   },
   "author": "Brian Gershon",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "commander": "^2.15.1",
+    "eslint": "^4.19.1",
     "json": "^9.0.6",
     "parse-link-header": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0"
   }
 }
