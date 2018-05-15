@@ -10,7 +10,10 @@ function nextURL(responseHeaders) {
   return '';
 }
 
-module.exports.getAllProjects = async function getAllProjects(GITLAB_TOKEN, GITLAB_INSTANCE) {
+module.exports.getAllProjects = async function getAllProjects(
+  GITLAB_TOKEN,
+  GITLAB_INSTANCE,
+) {
   const options = {
     headers: {
       'Private-Token': GITLAB_TOKEN,
@@ -22,7 +25,7 @@ module.exports.getAllProjects = async function getAllProjects(GITLAB_TOKEN, GITL
   let url = `${GITLAB_INSTANCE}/api/v4/projects?per_page=100`;
 
   while (url) {
-    console.log(`Fetching page of projects [${url}]...`);
+    console.log('Fetching next 100 projects...');
     const response = await axios.get(url, options);
     const result = response.data;
     projects.push(...result);

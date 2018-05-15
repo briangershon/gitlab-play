@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "bin": {
+    "gitlab-play": "./server.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "save-all-projects": "npm start -- save-all-projects",
-    "tags": "npm start -- tags",
-    "list-projects": "cat all-projects.json | json -a id name_with_namespace"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brian Gershon",
   "license": "MIT",

@@ -1,6 +1,9 @@
-/* eslint-disable no-console */
+#!/usr/bin/env node
+/* eslint-disable no-console, no-use-before-define */
 
 const fs = require('fs');
+const os = require('os');
+const path = require('path');
 const program = require('commander');
 const figlet = require('figlet');
 const { getAllProjects, getProjectTags } = require('./src/api-projects');
@@ -18,8 +21,9 @@ program
   .description('Save list of all projects to a file')
   .action(() => {
     getAllProjects(GITLAB_TOKEN, GITLAB_INSTANCE).then((projects) => {
-      fs.writeFile('all-projects.json', JSON.stringify(projects), 'utf8', () => {
-        console.log('wrote all-projects.json');
+      const filePath = path.join(homePath(), 'all-projects.json');
+      fs.writeFile(filePath, JSON.stringify(projects), 'utf8', () => {
+        console.log(`wrote ${filePath}.`);
       });
     }).catch((err) => {
       console.log('err', err);
@@ -36,3 +40,17 @@ program
   });
 
 program.parse(process.argv);
+
+/* Helpers */
+
+// homePath returns absolute path to ~/.gitlab-play (and creates folder if it doesn't exist)
+function homePath() {
+  const homedir = os.homedir();
+  const myPath = path.join(homedir, '.gitlab-play');
+  try {
+    fs.statSync(myPath);
+  } catch (err) {
+    fs.mkdir(myPath);
+  }
+  return myPath;
+}
